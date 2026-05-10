@@ -6,6 +6,8 @@
 
 EntityGraph Studio 是一个轻量级信息抽取与知识图谱工作台，面向需要快速把非结构化文本转换为结构化实体、关系和网络图谱的场景。项目提供可交互的 Web 界面和可复用的 Python 核心模块，适合用于原型验证、内部工具演示、规则抽取基线和知识图谱流程说明。
 
+线上访问：[https://sunny-xiabug.github.io/entitygraph-studio/](https://sunny-xiabug.github.io/entitygraph-studio/)
+
 ## 核心能力
 
 - 命名实体识别：支持 Person、Organization、Location 三类实体，并对重叠实体采用最长匹配优先策略。
