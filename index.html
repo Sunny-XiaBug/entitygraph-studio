@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EntityGraph Studio</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script defer src="./vendor/vis-network.min.js"></script>
+    <script defer src="./src/app.js"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">Information Extraction Workbench</p>
+          <h1>EntityGraph Studio</h1>
+          <p class="subtitle">
+            Extract named entities, inspect BIO tags, identify semantic relations,
+            and transform linear text into an interactive knowledge graph.
+          </p>
+        </div>
+        <div class="status-strip" aria-label="Pipeline status">
+          <span>NER</span>
+          <span>BIO</span>
+          <span>RE</span>
+          <span>KG</span>
+        </div>
+      </header>
+
+      <section class="workspace" aria-label="Information extraction workspace">
+        <section class="panel input-panel" aria-labelledby="input-title">
+          <div class="panel-heading">
+            <div>
+              <h2 id="input-title">Text Input</h2>
+              <p>Paste business, product, or organization text for extraction.</p>
+            </div>
+          </div>
+
+          <textarea id="sourceText" spellcheck="false"></textarea>
+
+          <div class="sample-list" aria-label="Example text snippets">
+            <button type="button" data-sample="0">
+              Steve Jobs founded Apple in California.
+            </button>
+            <button type="button" data-sample="1">
+              Elon Musk is the CEO of Tesla, which is headquartered in Austin.
+            </button>
+            <button type="button" data-sample="2">
+              张三创立了未来科技公司，该公司总部位于北京。
+            </button>
+            <button type="button" data-sample="3">
+              University of California, Los Angeles is located in Los Angeles.
+            </button>
+          </div>
+
+          <div class="actions">
+            <button class="primary" id="extractButton" type="button">
+              Extract
+            </button>
+            <button class="ghost" id="clearButton" type="button">Clear</button>
+            <label class="toggle">
+              <input id="bioToggle" type="checkbox" />
+              <span>Show BIO sequence</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="entities-title">
+          <div class="panel-heading">
+            <div>
+              <h2 id="entities-title">Entity Highlighting</h2>
+              <p>Entity boundaries remain inspectable through both UI spans and BIO tags.</p>
+            </div>
+          </div>
+          <div id="entityOutput" class="entity-output"></div>
+          <div class="legend" aria-label="Entity legend">
+            <span class="legend-item person">Person</span>
+            <span class="legend-item org">Organization</span>
+            <span class="legend-item loc">Location</span>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="relations-title">
+          <div class="panel-heading">
+            <div>
+              <h2 id="relations-title">Relation Extraction</h2>
+              <p>Detected entity pairs are normalized into graph-ready predicates.</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Subject</th>
+                  <th>Predicate</th>
+                  <th>Object</th>
+                </tr>
+              </thead>
+              <tbody id="relationRows"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel graph-panel" aria-labelledby="graph-title">
+          <div class="panel-heading">
+            <div>
+              <h2 id="graph-title">Knowledge Graph</h2>
+              <p>Drag nodes, zoom the canvas, and inspect relation labels directly.</p>
+            </div>
+            <button class="ghost compact" id="fitGraphButton" type="button">Fit</button>
+          </div>
+          <div id="graph" class="graph" role="img" aria-label="Knowledge graph canvas"></div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
